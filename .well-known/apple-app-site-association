@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["45UNXDF822.app.circuito.ios"],
+        "components": [
+          { "/": "/c", "comment": "Convite pro beta" },
+          { "/": "/c/*", "comment": "Convite pro beta" }
+        ]
+      }
+    ]
+  }
+}

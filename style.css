@@ -1,0 +1,20 @@
+/* Tokens do app (Circuito/DesignSystem/Palette.swift) */
+:root { --bg: #0E0D0C; --surface: #161513; --text: #F1ECE2; --dim: #8E887F; --border: rgba(241,236,226,.16); --accent: #FD6097; --on-accent: #15130F; color-scheme: dark; }
+@media (prefers-color-scheme: light) { :root { --bg: #F2EEE5; --surface: #E8E2D5; --text: #15130F; --dim: #6A645A; --border: rgba(21,19,15,.18); color-scheme: light; } }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); }
+body { font-family: Roboto, system-ui, sans-serif; font-size: 16px; line-height: 1.6; }
+main { max-width: 640px; margin: 0 auto; padding: 56px 20px 80px; }
+h1, h2, .px { font-family: Silkscreen, monospace; font-weight: 400; text-transform: uppercase; letter-spacing: .02em; }
+h1 { font-size: clamp(28px, 8vw, 40px); line-height: 1.1; margin: 20px 0 12px; }
+h2 { font-size: 17px; margin: 36px 0 8px; }
+p, li { color: var(--text); } .dim { color: var(--dim); }
+a { color: var(--accent); }
+.mark { width: 44px; height: 44px; background: var(--accent); }
+.step { border: 1px solid var(--border); background: var(--surface); padding: 18px; margin-top: 14px; }
+.step .n { font-family: Silkscreen, monospace; color: var(--accent); }
+.btn { display: block; text-align: center; text-decoration: none; font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; padding: 14px; margin-top: 12px; }
+.btn.accent { background: var(--accent); color: var(--on-accent); }
+.btn.ghost { border: 1px solid var(--border); color: var(--text); }
+.code { font-family: ui-monospace, Menlo, monospace; font-size: 18px; letter-spacing: .06em; overflow-wrap: anywhere; }
+footer { margin-top: 56px; font-size: 13px; color: var(--dim); }
