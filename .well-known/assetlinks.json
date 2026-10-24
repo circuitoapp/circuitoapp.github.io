@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.circuito.android",
+      "sha256_cert_fingerprints": [
+        "AA:89:EB:83:31:93:BF:64:58:C4:9D:8E:81:23:62:CD:63:06:85:2C:DE:EC:80:4A:44:FC:05:59:3E:AD:39:1B"
+      ]
+    }
+  }
+]
