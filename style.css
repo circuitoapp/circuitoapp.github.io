@@ -18,3 +18,4 @@ a { color: var(--accent); }
 .btn.ghost { border: 1px solid var(--border); color: var(--text); }
 .code { font-family: ui-monospace, Menlo, monospace; font-size: 18px; letter-spacing: .06em; overflow-wrap: anywhere; }
 footer { margin-top: 56px; font-size: 13px; color: var(--dim); }
+[hidden] { display: none !important; }

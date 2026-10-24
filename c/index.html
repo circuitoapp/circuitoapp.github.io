@@ -12,20 +12,36 @@
   <h1>Você foi convidado pro Circuito</h1>
   <p class="dim">A agenda cultural da cidade, feita pelos amigos. Ainda está em teste, só com convite.</p>
 
-  <div class="step"><span class="n">1</span> · Instale o app pelo TestFlight, o app de testes da Apple.
+  <div class="step" id="ios"><span class="n">1</span> · Instale o app pelo TestFlight, o app de testes da Apple.
     <a class="btn accent" href="https://testflight.apple.com/join/e2uA51gK">Instalar pelo TestFlight</a>
     <p class="dim">Se pedir pra instalar o TestFlight antes, instale, <strong>volte aqui e toque no botão de novo</strong>. Aí é só tocar em Aceitar e Instalar.</p>
     <p class="dim"><strong>Não digite código nenhum no TestFlight.</strong> O código do convite é só pro app do Circuito, no passo 2.</p></div>
 
+  <div class="step" id="android" hidden><span class="n">1</span> · O app do Circuito pra Android está chegando.
+    <a class="btn accent" id="play" href="" hidden>Instalar pelo Google Play</a>
+    <p class="dim" id="soon">Ainda não dá pra instalar no Android. Guarde este convite e abra de novo quando o app sair, ou abra num iPhone pelo TestFlight.</p></div>
+
   <div class="step"><span class="n">2</span> · Com o Circuito instalado, volte aqui, abra o convite e entre com Apple ou Google.
     <a class="btn ghost" id="open" href="circuito://acesso">Abrir convite no app</a>
-    <p class="dim" id="paste" hidden>Se o botão não abrir, cole este código na tela de espera do <strong>app do Circuito</strong> (não no TestFlight):</p>
+    <p class="dim" id="paste" hidden>Se o botão não abrir, cole este código na tela de espera do <strong>app do Circuito</strong> <span id="paste-ios">(não no TestFlight)</span>:</p>
     <p class="code" id="code"></p></div>
 
   <footer><a href="/privacidade/">Política de privacidade</a></footer>
 </main>
 <script>
-  // ?c=CODE. With the app installed this page doesn't even open: iOS hands the link to the app.
+  // Android: swap step 1. When Play testing exists, put its link here and the button shows up.
+  var PLAY_URL = '';
+  if (/Android/i.test(navigator.userAgent)) {
+    document.getElementById('ios').hidden = true;
+    document.getElementById('android').hidden = false;
+    document.getElementById('paste-ios').hidden = true;
+    if (PLAY_URL) {
+      document.getElementById('play').href = PLAY_URL;
+      document.getElementById('play').hidden = false;
+      document.getElementById('soon').hidden = true;
+    }
+  }
+  // ?c=CODE. With the app installed this page doesn't even open: iOS and Android hand the link to the app.
   var code = (new URLSearchParams(location.search).get('c') || '').replace(/[^A-Za-z0-9-]/g, '').toUpperCase();
   if (code) {
     document.getElementById('open').href = 'circuito://acesso?c=' + encodeURIComponent(code);
