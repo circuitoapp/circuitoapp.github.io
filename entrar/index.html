@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrar no Circuito</title>
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body><main>
+  <div class="mark" aria-hidden="true"></div>
+
+  <div id="ok">
+    <h1>Abra no celular</h1>
+    <p class="dim">O link de entrada só funciona no celular onde você pediu pra entrar, com o app do Circuito instalado.</p>
+    <div class="step">Se você está nesse celular, toque aqui:
+      <a class="btn accent" id="open" href="circuito://auth">Abrir o Circuito</a>
+      <p class="dim">Se abriu num computador, procure o mesmo e-mail no celular e toque no botão de lá.</p></div>
+  </div>
+
+  <div id="erro" hidden>
+    <h1>Esse link não vale mais</h1>
+    <p class="dim">O link de entrada vale por 1 hora e só pode ser usado uma vez. Peça outro no app: na tela de entrar, escolha e-mail de novo.</p>
+    <p class="dim" id="detalhe"></p>
+    <a class="btn ghost" href="circuito://auth">Abrir o Circuito</a>
+  </div>
+
+  <footer><a href="/privacidade/">Política de privacidade</a></footer>
+</main>
+<script>
+  // Supabase lands here (site_url) when it can't send the person back to the app: the e-mail link opened on
+  // another device, or it expired. Whatever came in the URL (?code=… or #access_token=… / #error=…) goes
+  // to the app untouched, and leaves the address bar right away.
+  var query = location.search, hash = location.hash;
+  history.replaceState(null, '', location.pathname);
+  var params = new URLSearchParams((query.slice(1) + '&' + hash.slice(1)).replace(/^&|&$/g, ''));
+  if (params.get('error') || params.get('error_code')) {
+    document.getElementById('ok').hidden = true;
+    document.getElementById('erro').hidden = false;
+    var code = params.get('error_code');
+    if (code && code !== 'otp_expired') document.getElementById('detalhe').textContent = 'Código: ' + code;
+  } else if (query || hash) {
+    document.getElementById('open').href = 'circuito://auth' + query + hash;
+  }
+</script>
+</body>
+</html>
