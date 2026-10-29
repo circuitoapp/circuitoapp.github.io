@@ -5,7 +5,9 @@
       "namespace": "android_app",
       "package_name": "app.circuito.android",
       "sha256_cert_fingerprints": [
-        "AA:89:EB:83:31:93:BF:64:58:C4:9D:8E:81:23:62:CD:63:06:85:2C:DE:EC:80:4A:44:FC:05:59:3E:AD:39:1B"
+        "AA:89:EB:83:31:93:BF:64:58:C4:9D:8E:81:23:62:CD:63:06:85:2C:DE:EC:80:4A:44:FC:05:59:3E:AD:39:1B",
+        "37:7D:E3:0F:44:D8:73:B0:11:8C:4B:04:27:59:59:19:6B:39:C6:D2:58:2C:BE:A7:6F:11:A9:13:05:40:24:0A",
+        "56:FD:A2:9E:3B:9B:78:F7:E7:54:59:A7:15:45:E4:D9:A7:08:BD:E4:F0:2D:5E:89:9A:93:D2:8C:B7:C5:19:08"
       ]
     }
   }
