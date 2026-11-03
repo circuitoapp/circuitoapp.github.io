@@ -12,10 +12,9 @@
   <h1>Você foi convidado pro Circuito</h1>
   <p class="dim">A agenda cultural da cidade, feita pelos amigos. Ainda está em teste, só com convite.</p>
 
-  <div class="step" id="ios"><span class="n">1</span> · Instale o app pelo TestFlight, o app de testes da Apple.
-    <a class="btn accent" href="https://testflight.apple.com/join/e2uA51gK">Instalar pelo TestFlight</a>
-    <p class="dim">Se pedir pra instalar o TestFlight antes, instale, <strong>volte aqui e toque no botão de novo</strong>. Aí é só tocar em Aceitar e Instalar.</p>
-    <p class="dim"><strong>Não digite código nenhum no TestFlight.</strong> O código do convite é só pro app do Circuito, no passo 2.</p></div>
+  <div class="step" id="ios"><span class="n">1</span> · Instale o app pela App Store.
+    <a class="btn accent" href="https://apps.apple.com/app/circuito/id6824781422">Instalar pela App Store</a>
+    <p class="dim">Depois <strong>volte aqui</strong> pro passo 2.</p></div>
 
   <div class="step" id="android" hidden><span class="n">1</span> · Instale o app pelo Firebase App Distribution, o app de testes do Google.
     <a class="btn accent" href="https://appdistribution.firebase.dev/i/5ce0fece35052ccd">Entrar no teste do Android</a>
@@ -24,7 +23,7 @@
 
   <div class="step"><span class="n">2</span> · Com o Circuito instalado, volte aqui, abra o convite e entre com Apple ou Google.
     <a class="btn ghost" id="open" href="circuito://acesso">Abrir convite no app</a>
-    <p class="dim" id="paste" hidden>Se o botão não abrir, cole este código na tela de espera do <strong>app do Circuito</strong> <span id="paste-ios">(não no TestFlight)</span>:</p>
+    <p class="dim" id="paste" hidden>Se o botão não abrir, cole este código na tela de espera do <strong>app do Circuito</strong>:</p>
     <p class="code" id="code"></p></div>
 
   <footer><a href="/privacidade/">Política de privacidade</a></footer>
@@ -34,7 +33,6 @@
   if (/Android/i.test(navigator.userAgent)) {
     document.getElementById('ios').hidden = true;
     document.getElementById('android').hidden = false;
-    document.getElementById('paste-ios').hidden = true;
   }
   // ?c=CODE. With the app installed this page doesn't even open: iOS and Android hand the link to the app.
   var code = (new URLSearchParams(location.search).get('c') || '').replace(/[^A-Za-z0-9-]/g, '').toUpperCase();
