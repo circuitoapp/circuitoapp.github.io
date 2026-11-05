@@ -16,9 +16,15 @@
     <a class="btn accent" href="https://apps.apple.com/app/circuito/id6824781422">Instalar pela App Store</a>
     <p class="dim">Depois <strong>volte aqui</strong> pro passo 2.</p></div>
 
-  <div class="step" id="android" hidden><span class="n">1</span> · Instale o app pelo Firebase App Distribution, o app de testes do Google.
-    <a class="btn accent" href="https://appdistribution.firebase.dev/i/5ce0fece35052ccd">Entrar no teste do Android</a>
-    <p class="dim">Coloque seu e-mail e aceite. Chega um e-mail do Firebase: siga o link dele pra instalar o <strong>App Tester</strong> e, por ele, baixe o Circuito. Se o Android pedir, permita instalar apps dessa fonte.</p>
+  <div class="step" id="android" hidden><span class="n">1</span> · O Circuito no Android está em teste fechado na Google Play. São três toques, sempre com a <strong>mesma conta Google da Play Store do seu celular</strong>.
+    <p class="dim"><strong>a.</strong> Entre no grupo de testes. Se você já recebeu um aviso do grupo, pule esta parte.</p>
+    <a class="btn ghost" href="https://groups.google.com/g/circuito-testers">Entrar no grupo</a>
+    <p class="dim"><strong>b.</strong> Aceite o teste. Se aparecer um erro, espere um minuto e toque de novo.</p>
+    <a class="btn ghost" href="https://play.google.com/apps/testing/app.circuito.android">Virar testador</a>
+    <p class="dim"><strong>c.</strong> Instale pela Play Store.</p>
+    <a class="btn accent" href="https://play.google.com/store/apps/details?id=app.circuito.android">Instalar o Circuito</a>
+    <p class="dim">Se você instalou o Circuito pelo Firebase, <strong>desinstale antes</strong>: a versão da Play não instala por cima dele.</p>
+    <p class="dim">Fique no teste por pelo menos 14 dias: é o que falta pro Circuito abrir pra todo mundo na Play.</p>
     <p class="dim">Depois <strong>volte aqui</strong> pro passo 2.</p></div>
 
   <div class="step"><span class="n">2</span> · Com o Circuito instalado, volte aqui, abra o convite e entre com Apple ou Google.
@@ -29,7 +35,7 @@
   <footer><a href="/privacidade/">Política de privacidade</a></footer>
 </main>
 <script>
-  // Android: swap step 1 (Firebase App Distribution invite link, group "testers").
+  // Android: swap step 1 (Play closed test; testers come from the Google Group circuito-testers).
   if (/Android/i.test(navigator.userAgent)) {
     document.getElementById('ios').hidden = true;
     document.getElementById('android').hidden = false;
