@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roteiro no Circuito</title>
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  #map { height: 300px; border: 1px solid var(--border); margin: 18px 0; }
+  .label { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin: 26px 0 4px; }
+  .stop { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .num { flex: none; width: 30px; height: 30px; display: grid; place-items: center; background: var(--accent); color: #15130F; font-family: Silkscreen, monospace; }
+  .stop h3 { font-family: Silkscreen, monospace; font-weight: 400; font-size: 15px; text-transform: uppercase; margin: 0; line-height: 1.3; overflow-wrap: anywhere; }
+  .stop p { margin: 2px 0 0; font-size: 14px; }
+  .passed { text-decoration: line-through; }
+  .pin { width: 26px; height: 26px; display: grid; place-items: center; background: #FD6097; color: #15130F; font: 14px Silkscreen, monospace; }
+</style>
+</head>
+<body><main>
+  <div class="mark" aria-hidden="true"></div>
+  <div id="loading" class="dim" role="status">Abrindo o roteiro…</div>
+  <div id="missing" hidden><h1>Roteiro não encontrado</h1><p class="dim">Este link não existe ou o roteiro não está mais aberto. Peça um link novo pra quem te mandou.</p></div>
+  <article id="roteiro" hidden>
+    <h1 id="title"></h1>
+    <p class="dim" id="by"></p>
+    <p id="intro"></p>
+    <div id="map" role="img" aria-label="Mapa com as paradas do roteiro"></div>
+    <div id="stops"></div>
+    <a class="btn accent" href="/c/">Conhecer o Circuito</a>
+  </article>
+  <footer><a href="/privacidade/">Política de privacidade</a></footer>
+</main>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+  // The roteiro opens here without an account (roteiro_publico). This key is the publishable one, the same the apps carry.
+  var API = 'https://xjwecghnlgkkgyifqwrb.supabase.co', KEY = 'sb_publishable_v9qj5i5mFAbr_an42l1_6A_V_VY3Tje';
+  var code = (new URLSearchParams(location.search).get('c') || '').replace(/[^a-f0-9]/g, '');
+  var el = function (id) { return document.getElementById(id); };
+  function add(parent, tag, text, cls) { var n = document.createElement(tag); if (text) n.textContent = text; if (cls) n.className = cls; parent.appendChild(n); return n; }
+  function missing() { el('loading').hidden = true; el('missing').hidden = false; }
+  function day(iso) { return new Intl.DateTimeFormat('pt-BR', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo' }).format(new Date(iso)); }
+
+  function list(r) {
+    var last = null;
+    r.stops.forEach(function (s, i) {
+      if (r.grouping !== 'nenhum' && s.section && s.section !== last) { add(el('stops'), 'div', s.section, 'label'); last = s.section; }
+      var e = s.event, passed = e && e.passed, row = add(el('stops'), 'div', '', 'stop');
+      add(row, 'span', String(i + 1), 'num');
+      var body = add(row, 'div');
+      add(body, 'h3', e && !passed ? e.title : s.place);
+      add(body, 'p', e && !passed ? s.place + (e.nextAt ? ' · ' + day(e.nextAt) : '') : s.neighborhood, 'dim');
+      if (passed) add(body, 'p', e.title, 'dim passed');
+      if (s.note) add(body, 'p', '“' + s.note + '”');
+      var a = add(body, 'a', 'Como chegar');
+      a.href = 'https://www.google.com/maps/dir/?api=1&travelmode=walking&destination=' + s.latitude + ',' + s.longitude;
+      a.target = '_blank'; a.rel = 'noopener';
+    });
+  }
+
+  function map(stops) {
+    if (!stops.length || !window.maplibregl) { el('map').hidden = true; return; }
+    var dark = matchMedia('(prefers-color-scheme: dark)').matches, points = stops.map(function (s) { return [s.longitude, s.latitude]; });
+    var m = new maplibregl.Map({ container: 'map', style: 'https://tiles.openfreemap.org/styles/' + (dark ? 'dark' : 'positron'), attributionControl: { compact: true } });
+    var box = points.reduce(function (b, p) { return b.extend(p); }, new maplibregl.LngLatBounds(points[0], points[0]));
+    m.fitBounds(box, { padding: { top: 50, left: 50, right: 50, bottom: 70 }, maxZoom: 15, duration: 0 });
+    m.on('load', function () {
+      // The credit starts open and covers the pins on a phone: it stays one tap away.
+      var credit = document.querySelector('.maplibregl-ctrl-attrib'); if (credit) credit.classList.remove('maplibregl-compact-show');
+      m.addSource('path', { type: 'geojson', data: { type: 'Feature', geometry: { type: 'LineString', coordinates: points } } });
+      m.addLayer({ id: 'path', type: 'line', source: 'path', paint: { 'line-color': '#FD6097', 'line-width': 2.5, 'line-dasharray': [2, 2] } });
+    });
+    stops.forEach(function (s, i) { var n = document.createElement('div'); n.className = 'pin'; n.textContent = i + 1; new maplibregl.Marker({ element: n }).setLngLat([s.longitude, s.latitude]).addTo(m); });
+  }
+
+  if (!code) missing(); else fetch(API + '/rest/v1/rpc/roteiro_publico', {
+    method: 'POST', headers: { apikey: KEY, 'Content-Type': 'application/json' }, body: JSON.stringify({ code: code })
+  }).then(function (r) { if (!r.ok) throw r; return r.json(); }).then(function (r) {
+    if (!r) return missing();
+    document.title = r.title + ' · Circuito';
+    el('title').textContent = r.title;
+    el('by').textContent = ['por ' + r.ownerName, r.forName ? 'pra ' + r.forName : null, r.stops.length === 1 ? '1 parada' : r.stops.length + ' paradas'].filter(Boolean).join(' · ');
+    if (r.intro) el('intro').textContent = r.intro; else el('intro').hidden = true;
+    el('loading').hidden = true; el('roteiro').hidden = false;
+    list(r); map(r.stops);
+  }).catch(missing);
+</script>
+</body>
+</html>
