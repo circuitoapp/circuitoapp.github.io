@@ -65,8 +65,10 @@
     var dark = matchMedia('(prefers-color-scheme: dark)').matches, points = stops.map(function (s) { return [s.longitude, s.latitude]; });
     var m = new maplibregl.Map({ container: 'map', style: 'https://tiles.openfreemap.org/styles/' + (dark ? 'dark' : 'positron'), attributionControl: { compact: true } });
     var box = points.reduce(function (b, p) { return b.extend(p); }, new maplibregl.LngLatBounds(points[0], points[0]));
-    m.fitBounds(box, { padding: 50, maxZoom: 15, duration: 0 });
+    m.fitBounds(box, { padding: { top: 50, left: 50, right: 50, bottom: 70 }, maxZoom: 15, duration: 0 });
     m.on('load', function () {
+      // The credit starts open and covers the pins on a phone: it stays one tap away.
+      var credit = document.querySelector('.maplibregl-ctrl-attrib'); if (credit) credit.classList.remove('maplibregl-compact-show');
       m.addSource('path', { type: 'geojson', data: { type: 'Feature', geometry: { type: 'LineString', coordinates: points } } });
       m.addLayer({ id: 'path', type: 'line', source: 'path', paint: { 'line-color': '#FD6097', 'line-width': 2.5, 'line-dasharray': [2, 2] } });
     });
