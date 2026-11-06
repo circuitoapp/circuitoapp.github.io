@@ -9,36 +9,63 @@
 <body><main>
   <div class="mark" aria-hidden="true"></div>
   <h1>Política de privacidade</h1>
-  <p class="dim">Circuito (versão de teste) · atualizada em 20 de outubro de 2026</p>
-  <p>O Circuito é uma agenda cultural feita pelos amigos. Esta página diz que dados o app guarda, por quê, quem vê e como apagar. Está escrita para a fase de teste (beta) e muda quando o app abrir para todos.</p>
+  <p class="dim">Circuito (versão de teste) · atualizada em 6 de novembro de 2026</p>
+  <p>O Circuito é uma agenda cultural feita pelos amigos, com app para iPhone e para Android. Esta página diz que dados os apps guardam, por quê, quem vê e como apagar. Está escrita para a fase de teste (beta) e muda quando o app abrir para todos.</p>
 
   <h2>O que guardamos</h2>
   <ul>
-    <li><b>Conta:</b> o identificador e o e-mail que a Apple ou o Google nos mandam quando você entra (com “Ocultar e-mail” da Apple, recebemos um endereço de encaminhamento), e o nome.</li>
+    <li><b>Conta:</b> o identificador e o e-mail que a Apple ou o Google nos mandam quando você entra (com “Ocultar e-mail” da Apple, recebemos um endereço de encaminhamento), e o nome. Se você entrar pelo link enviado por e-mail, guardamos o endereço que você digitou.</li>
     <li><b>Perfil:</b> nome, @, bio, cor e foto, se você puser.</li>
-    <li><b>O que você faz no app:</b> eventos que cria (com cartaz e fotos), listas, curtidas, “Eu vou”, “Fui”, recomendações, notas no mural, quem você segue e quem você bloqueou, denúncias que envia.</li>
+    <li><b>O que você faz no app:</b> eventos que cria (com cartaz e fotos), listas, roteiros, curtidas, “Eu vou”, “Fui”, recomendações, notas no mural, mensagens e eventos que você manda para outras pessoas, quem e quais lugares você segue, quem você bloqueou, denúncias que envia.</li>
     <li><b>Convites:</b> o seu link de convite e quem entrou por ele.</li>
-    <li><b>Comentários de teste (Bancada):</b> o texto, um print da tela onde você comentou, o modelo do aparelho, a versão do iOS e do app, e o idioma.</li>
+    <li><b>Avisos no celular:</b> se os avisos estiverem permitidos no aparelho, o código que identifica o aparelho para os avisos, a plataforma, a versão do app e o idioma. Você desliga os avisos nos ajustes do celular.</li>
+    <li><b>Comentários de teste (Bancada):</b> o texto, um print da tela onde você comentou, a tela e o ponto marcados, seu nome de testador, sua conta, o modelo do aparelho, a versão do sistema e do app, e o idioma.</li>
+  </ul>
+
+  <h2>Estatísticas, falhas e ajustes do app</h2>
+  <p>Os dois apps usam o Firebase, do Google, com ou sem conta. Isso não tem como desligar dentro do app.</p>
+  <ul>
+    <li><b>Estatísticas de uso (Google Analytics):</b> telas vistas e sessões, um identificador do app instalado, dados do aparelho e a região aproximada, deduzida do endereço IP. Não ligamos isso à sua conta e não usamos o identificador de publicidade.</li>
+    <li><b>Relatórios de falha (Crashlytics):</b> quando o app trava, o erro, o estado do app naquele momento, dados do aparelho, um identificador da instalação e o identificador da sua conta, se você tiver entrado. Assim dá para achar o problema e saber quem foi afetado.</li>
+    <li><b>Ajustes remotos (Remote Config):</b> o app pergunta ao Firebase se há configuração nova, e nessa conversa vão um identificador da instalação, país, idioma, fuso horário e versões do sistema e do app.</li>
   </ul>
 
   <h2>O que não guardamos</h2>
   <ul>
-    <li><b>Sua localização.</b> Se você deixar, o app usa a posição do celular para mostrar eventos perto de você, mas ela não vai para o nosso servidor. Nas buscas, o app manda só a área do mapa.</li>
-    <li>Senhas: o app não tem senha. Quem cuida do login é a Apple ou o Google.</li>
+    <li><b>Sua localização, com uma exceção.</b> Se você deixar, o app usa a posição do celular para mostrar eventos perto de você, e ela fica no aparelho. A exceção é criar um evento: se você tocar em “Estou aqui”, ou salvar um evento sem endereço encontrado no mapa e já tiver dado a permissão, a posição do celular vira o lugar do evento. Ela vai para o servidor junto com ele, e quem pode ver o evento vê esse lugar.</li>
+    <li>Senhas: você não cria senha para entrar. Quem cuida do login é a Apple, o Google ou o link enviado por e-mail.</li>
     <li>Não vendemos dados, não usamos para anúncios e não rastreamos você em outros apps.</li>
   </ul>
 
   <h2>Quem vê</h2>
-  <p>Seu perfil é visto por quem tem conta no Circuito. Curtidas, “Fui” e recomendações ficam privados até você postar; “Eu vou” aparece para amigos. Eventos e listas seguem a visibilidade que você escolher em cada um. Comentários da Bancada são vistos só pela equipe do Circuito.</p>
+  <p>Seu perfil é visto por quem tem conta no Circuito. Curtidas, “Fui” e recomendações ficam privados até você postar; “Eu vou” aparece para amigos. Eventos, listas e roteiros seguem a visibilidade que você escolher em cada um. Quem abre o link de um roteiro público ou compartilhado por link vê seu nome e seu @, mesmo sem conta. Mensagens e eventos que você manda são vistos por quem recebe. Comentários da Bancada e denúncias são vistos só pela equipe do Circuito.</p>
 
   <h2>Onde ficam</h2>
-  <p>Os dados ficam no Supabase, o serviço de banco de dados e arquivos que o Circuito usa. O mapa usa a MapTiler, que recebe a área do mapa que você está vendo para desenhá-lo. O login passa pela Apple ou pelo Google, conforme você escolher.</p>
+  <p>Os dados ficam no Supabase, o serviço de banco de dados e arquivos que o Circuito usa. Os outros serviços recebem só o que precisam para fazer a sua parte:</p>
+  <ul>
+    <li><b>Firebase (Google):</b> as estatísticas, os relatórios de falha e os ajustes remotos. Nos avisos, recebe também o código do aparelho e o conteúdo de cada aviso, que pode ter o nome de quem mandou, o nome do evento ou da lista e o texto da mensagem ou da nota. No iPhone, a entrega passa pela Apple.</li>
+    <li><b>Resend:</b> manda o e-mail com o link de entrada, e por isso recebe esse endereço.</li>
+    <li><b>MapTiler:</b> recebe a área do mapa que você está vendo para desenhá-lo. No Android, recebe também o que você digita ao procurar um lugar ou endereço.</li>
+    <li><b>Apple:</b> no iPhone, recebe o que você digita ao procurar um lugar ou endereço.</li>
+    <li><b>ViaCEP:</b> recebe o CEP que você digita, para achar o endereço.</li>
+    <li><b>Apple ou Google:</b> o login passa por um deles, conforme você escolher.</li>
+  </ul>
+  <p>Alguns desses serviços podem tratar dados fora do Brasil.</p>
 
-  <h2>Como apagar</h2>
-  <p>No app, em <b>Perfil → Apagar conta</b> (também na tela de lista de espera). Apaga sua conta, perfil, marcações, listas, notas no mural e arquivos. Eventos públicos que você criou continuam no Circuito, sem o seu nome (“enviado por pessoa que saiu”). Para apagar comentários da Bancada ou tirar qualquer dúvida, mande um comentário pela própria Bancada, no app.</p>
+  <h2 id="apagar">Como apagar</h2>
+  <p>No app, em <b>Perfil → Apagar conta</b> (também na tela de lista de espera). Apaga sua conta, perfil, marcações, listas, roteiros, notas no mural, mensagens, aparelhos registrados para avisos e arquivos, e também os eventos não públicos que você criou.</p>
+  <p>Sem o app, peça pelo e-mail <a href="mailto:contato@circuito.yubathom.cc">contato@circuito.yubathom.cc</a>, escrevendo do endereço da sua conta no Circuito. Se você entrou com “Ocultar e-mail” da Apple, diga também o seu @.</p>
+  <p>O que continua depois de apagar:</p>
+  <ul>
+    <li>Eventos públicos que você criou continuam no Circuito, sem o seu nome (“enviado por pessoa que saiu”) e sem os seus arquivos.</li>
+    <li>Denúncias que você enviou continuam com a equipe, sem ligação com a sua conta.</li>
+    <li>Comentários da Bancada continuam até você pedir para apagar, pelo e-mail acima ou pela própria Bancada.</li>
+    <li>O texto de avisos já mandados para outras pessoas, que pode ter o seu nome, continua no histórico de envio.</li>
+    <li>O Firebase guarda os relatórios de falha, com o identificador da conta, por 90 dias. As estatísticas de uso não são ligadas à conta e seguem o prazo de retenção do Google Analytics.</li>
+  </ul>
 
   <h2>Seus direitos</h2>
-  <p>Pela LGPD, você pode pedir acesso, correção ou exclusão dos seus dados a qualquer momento. A conta você apaga sozinho no app; para o resto, fale com a equipe pela Bancada.</p>
+  <p>Pela LGPD, você pode pedir acesso, correção ou exclusão dos seus dados a qualquer momento. A conta você apaga sozinho no app; para o resto, ou para tirar qualquer dúvida, fale com a equipe em <a href="mailto:contato@circuito.yubathom.cc">contato@circuito.yubathom.cc</a>.</p>
 
   <footer><a href="/">Circuito</a></footer>
 </main></body>
