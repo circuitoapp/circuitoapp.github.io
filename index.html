@@ -2,14 +2,179 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Circuito</title>
+<title>Circuito · a agenda cultural da cidade</title>
+<meta name="description" content="O Circuito é a agenda cultural da cidade: agentes encontram os melhores eventos, amigos e embaixadores fazem a curadoria. Criado por Luiza Lian.">
+<meta property="og:title" content="Circuito">
+<meta property="og:description" content="A agenda cultural da cidade, curada por amigos e embaixadores.">
+<meta property="og:image" content="https://circuitoapp.github.io/img/icon.png">
+<link rel="icon" href="/img/icon.png">
+<link rel="apple-touch-icon" href="/img/icon.png">
+<meta name="apple-itunes-app" content="app-id=6824781422">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Silkscreen&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
+<style>
+  main.home { max-width: 1040px; padding-top: 28px; }
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .logo { display: flex; align-items: center; gap: 12px; font-family: Silkscreen, monospace; text-transform: uppercase; font-size: 18px; color: var(--text); text-decoration: none; }
+  .logo img { width: 36px; height: 36px; display: block; }
+  .top a.small { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; }
+
+  .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; margin-top: 56px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+  .hero h1 { font-size: clamp(30px, 5vw, 52px); line-height: 1.02; margin: 14px 0 20px; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .lede { font-size: 18px; font-weight: 300; max-width: 30em; margin: 0; }
+  .stores { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .stores .btn { display: inline-flex; align-items: center; gap: 10px; margin: 0; padding: 14px 20px; }
+  .btn.soon { border: 1px dashed var(--border); color: var(--dim); cursor: default; }
+  .btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+  .poster { position: relative; aspect-ratio: 4 / 5; background: #F2EEE5; overflow: hidden; border: 1px solid var(--border); }
+  .poster .tex { position: absolute; inset: 0; background: url(/img/riso.jpg) center / cover; mix-blend-mode: multiply; filter: contrast(1.15); }
+  .poster .ink { position: absolute; inset: 0; background: var(--accent); mix-blend-mode: screen; opacity: .9; }
+  .poster .sq { position: absolute; right: 9%; top: 8%; width: 32%; aspect-ratio: 1; background: var(--accent); mix-blend-mode: multiply; }
+  .poster .cap { position: absolute; left: 7%; right: 7%; bottom: 7%; color: #15130F; }
+  .poster .cap .px { font-size: clamp(22px, 3.4vw, 34px); line-height: 1.05; display: block; }
+  .poster .cap small { display: block; margin-top: 10px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .marks { position: absolute; left: 7%; top: 8%; display: flex; gap: 10px; }
+  .marks svg { width: 18px; height: 18px; fill: #15130F; }
+
+  section { margin-top: 112px; }
+  section > h2 { font-size: clamp(22px, 3.2vw, 30px); margin: 10px 0 14px; line-height: 1.15; }
+  section > p.intro { max-width: 36em; color: var(--dim); margin: 0; }
+
+  .flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 36px; border: 1px solid var(--border); }
+  .flow > div { padding: 26px 24px 28px; background: var(--surface); }
+  .flow > div + div { border-left: 1px solid var(--border); }
+  .flow .n { font-family: Silkscreen, monospace; color: var(--accent); font-size: 13px; }
+  .flow h3 { font-family: Silkscreen, monospace; font-weight: 400; text-transform: uppercase; font-size: 17px; margin: 14px 0 8px; }
+  .flow p { margin: 0; font-size: 15px; color: var(--dim); }
+  .flow p strong { color: var(--text); font-weight: 700; }
+
+  .crew { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 36px; }
+  .crew > div { border: 1px solid var(--border); padding: 22px 22px 24px; display: grid; grid-template-columns: 28px 1fr; gap: 4px 14px; }
+  .crew svg { width: 20px; height: 20px; fill: var(--accent); margin-top: 3px; grid-row: span 2; }
+  .crew h3 { margin: 0; font-size: 16px; font-weight: 700; }
+  .crew p { margin: 0; font-size: 15px; color: var(--dim); }
+
+  .feats { list-style: none; padding: 0; margin: 36px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 32px; }
+  .feats li { border-top: 2px solid var(--accent); padding-top: 14px; }
+  .feats b { display: block; font-family: Silkscreen, monospace; font-weight: 400; text-transform: uppercase; font-size: 15px; margin-bottom: 6px; }
+  .feats span { color: var(--dim); font-size: 15px; }
+
+  .author { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; background: var(--accent); color: var(--on-accent); padding: 36px; }
+  .author .px { font-size: clamp(26px, 4vw, 40px); line-height: 1.05; }
+  .author p { color: var(--on-accent); margin: 8px 0 0; max-width: 34em; }
+  .author .eyebrow { color: var(--on-accent); opacity: .7; }
+  .author .face { width: 72px; height: 72px; background: var(--on-accent); display: grid; place-items: center; }
+  .author .face span { width: 26px; height: 26px; background: var(--accent); }
+
+  .end { text-align: center; }
+  .end .stores { justify-content: center; }
+  footer.home { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid var(--border); padding-top: 20px; }
+
+  @media (max-width: 760px) {
+    .hero { grid-template-columns: 1fr; gap: 36px; margin-top: 36px; }
+    .poster { max-width: 420px; }
+    section { margin-top: 80px; }
+    .flow { grid-template-columns: 1fr; }
+    .flow > div + div { border-left: 0; border-top: 1px solid var(--border); }
+    .crew, .feats { grid-template-columns: 1fr; }
+    .author { grid-template-columns: 1fr; padding: 28px 22px; }
+    .stores .btn { flex: 1 1 100%; justify-content: center; }
+  }
+</style>
 </head>
-<body><main>
-  <div class="mark" aria-hidden="true"></div>
-  <h1>Circuito</h1>
-  <p>A agenda cultural da cidade, feita pelos amigos. O app está em teste com um grupo pequeno: quem usa chama os amigos por um link de convite.</p>
-  <footer><a href="/privacidade/">Política de privacidade</a></footer>
+<body><main class="home">
+
+  <header class="top">
+    <a class="logo" href="/"><img src="/img/icon.png" alt="">Circuito</a>
+    <a class="small" href="https://apps.apple.com/app/circuito/id6824781422">Baixar</a>
+  </header>
+
+  <div class="hero">
+    <div>
+      <span class="eyebrow">São Paulo · e outras cidades chegando</span>
+      <h1>O que vale a pena <em>na sua cidade</em>, escolhido por quem você confia.</h1>
+      <p class="lede">O Circuito é a agenda cultural da cidade. Uma equipe de agentes vasculha as fontes atrás dos melhores eventos, e amigos e embaixadores locais decidem o que entra.</p>
+      <div class="stores">
+        <a class="btn accent" href="https://apps.apple.com/app/circuito/id6824781422">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.6 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.8s-2.6-1-2.6-4.2zM13.9 4.9c.7-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.5 2.8-1.3z"/></svg>
+          Baixar na App Store</a>
+        <span class="btn soon" aria-disabled="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.2 13.4 12l-9.8 9.8c-.4-.2-.6-.7-.6-1.2V3.4c0-.5.2-1 .6-1.2zm11 8.6 2.5-2.5L5.2 1.5l9.4 9.3zm3.8-1.8 2.9 1.6c.9.5.9 1.8 0 2.3l-2.9 1.6-2.7-2.6 2.7-2.9zM5.2 22.5l11.9-6.8-2.5-2.5-9.4 9.3z"/></svg>
+          Google Play · em breve</span>
+      </div>
+    </div>
+
+    <div class="poster" aria-hidden="true">
+      <div class="tex"></div><div class="ink"></div><div class="sq"></div>
+      <div class="marks">
+        <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg>
+        <svg viewBox="0 0 10 10"><path d="M5 0 10 10H0z"/></svg>
+        <svg viewBox="0 0 10 10"><path d="M0 0h10L5 10z"/></svg>
+        <svg viewBox="0 0 10 10"><path d="M5 0 10 5 5 10 0 5z"/></svg>
+      </div>
+      <div class="cap"><span class="px">Hoje · Fim de semana · Grátis · Na rua</span><small>A agenda da cidade, impressa em riso</small></div>
+    </div>
+  </div>
+
+  <section>
+    <span class="eyebrow">Como funciona</span>
+    <h2>Agentes procuram. Gente escolhe.</h2>
+    <p class="intro">Nenhum algoritmo decide o que você vê. Os agentes fazem o trabalho pesado, e todo evento passa pelo olhar de uma pessoa antes de chegar no app.</p>
+    <div class="flow">
+      <div><span class="n">01</span><h3>Apuração</h3><p>Os agentes visitam casas de show, centros culturais, coletivos e sites de ingresso, leem os flyers e trazem o que acharam pra <strong>pauta</strong>.</p></div>
+      <div><span class="n">02</span><h3>Curadoria</h3><p>A curadoria e os <strong>embaixadores</strong> de cada cidade conferem data, lugar, preço e ingresso. Só entra o que recebe um “pode”.</p></div>
+      <div><span class="n">03</span><h3>Seus amigos</h3><p>No app você segue <strong>amigos</strong>, vê pra onde eles vão, recomenda, monta listas e combina o rolê.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">A redação</span>
+    <h2>Uma equipe de agentes, com gente no comando</h2>
+    <div class="crew">
+      <div><svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"/></svg><h3>O repórter</h3><p>Percorre as fontes que estão vencendo e transforma cada evento novo num item da pauta, com flyer, data e link.</p></div>
+      <div><svg viewBox="0 0 10 10"><path d="M5 0 10 10H0z"/></svg><h3>A mesa de curadoria</h3><p>Organiza a pauta, avisa quando um evento parece repetido e publica pela conta certa. Nunca publica sozinha.</p></div>
+      <div><svg viewBox="0 0 10 10"><path d="M0 0h10L5 10z"/></svg><h3>Os embaixadores</h3><p>Pessoas que conhecem a cena de cada cidade e mandam dicas pelo botão “Sugerir evento”.</p></div>
+      <div><svg viewBox="0 0 10 10"><path d="M5 0 10 5 5 10 0 5z"/></svg><h3>As contas de cidade</h3><p>Cada cidade tem a sua agenda, com fontes e embaixadores próprios, pra crescer além de São Paulo.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">No app</span>
+    <h2>Tudo pra sair de casa</h2>
+    <ul class="feats">
+      <li><b>Explorar</b><span>Agenda ou mapa, com filtros de hoje, fim de semana, perto de mim, grátis e na rua.</span></li>
+      <li><b>Eu vou · Fui</b><span>Marque o que vai ver, avalie depois e recomende pros amigos.</span></li>
+      <li><b>Listas vivas</b><span>Some ou cruze agendas de amigos numa lista que se atualiza sozinha.</span></li>
+      <li><b>Seu calendário</b><span>Mês, semana e próximos, com a lista do mês num toque.</span></li>
+      <li><b>Cartazes</b><span>Compartilhe uma lista como cartaz em estética riso, pronto pro story.</span></li>
+      <li><b>Social</b><span>Siga amigos, veja a atividade deles e converse sobre os eventos.</span></li>
+    </ul>
+  </section>
+
+  <section class="author">
+    <div class="face" aria-hidden="true"><span></span></div>
+    <div>
+      <span class="eyebrow">Quem fez</span>
+      <div class="px">Criado por Luiza Lian</div>
+      <p>Idealizado pela Luiza Lian, que também está à frente da curadoria: é na mesa dela que cada evento recebe o “pode” antes de chegar até você.</p>
+    </div>
+  </section>
+
+  <section class="end">
+    <h2>Baixe o Circuito</h2>
+    <p class="intro" style="margin: 0 auto;">Disponível no iPhone. No Android, chega em breve na Google Play.</p>
+    <div class="stores">
+      <a class="btn accent" href="https://apps.apple.com/app/circuito/id6824781422">Baixar na App Store</a>
+      <span class="btn soon" aria-disabled="true">Google Play · em breve</span>
+    </div>
+  </section>
+
+  <footer class="home">
+    <span>© Circuito</span>
+    <a href="/privacidade/">Política de privacidade</a>
+  </footer>
 </main></body>
 </html>
