@@ -24,10 +24,11 @@
   .hero h1 { font-size: clamp(30px, 5vw, 52px); line-height: 1.02; margin: 14px 0 20px; }
   .hero h1 em { font-style: normal; color: var(--accent); }
   .lede { font-size: 18px; font-weight: 300; max-width: 30em; margin: 0; }
-  .stores { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .stores .btn { display: inline-flex; align-items: center; gap: 10px; margin: 0; padding: 14px 20px; }
-  .btn.soon { border: 1px dashed var(--border); color: var(--dim); cursor: default; }
-  .btn svg { width: 16px; height: 16px; fill: currentColor; }
+  /* Selo oficial da Apple (Apple Marketing Tools, pt-BR), sem alterar. Área livre de 1/4 da altura em volta. */
+  .stores { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 28px; }
+  .stores .badge { display: block; line-height: 0; }
+  .stores .badge img { height: 48px; width: auto; display: block; }
+  .stores .soon { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
 
   .poster { position: relative; aspect-ratio: 4 / 5; background: #F2EEE5; overflow: hidden; border: 1px solid var(--border); }
   .poster .tex { position: absolute; inset: 0; background: url(/img/riso.jpg) center / cover; mix-blend-mode: multiply; filter: contrast(1.15); }
@@ -86,7 +87,6 @@
     .uses li + li { border-left: 0; border-top: 1px solid var(--border); }
     .author { grid-template-columns: 1fr; padding: 28px 22px; }
     .amb { padding: 28px 22px; }
-    .stores .btn { flex: 1 1 100%; justify-content: center; }
   }
 </style>
 </head>
@@ -103,12 +103,8 @@
       <h1>Rolês culturais <em>da cidade</em>, indicados por quem você confia.</h1>
       <p class="lede">O Circuito te ajuda a montar o seu roteiro, encontrar seus amigos e curtir a cultura com as pessoas que você gosta e confia.</p>
       <div class="stores">
-        <a class="btn accent" href="https://apps.apple.com/app/circuito/id6824781422">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.8 1.2 1.8 2.6 3.1 2.6 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.8s-2.6-1-2.6-4.2zM13.9 4.9c.7-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.5 2.8-1.3z"/></svg>
-          Baixar na App Store</a>
-        <span class="btn soon" aria-disabled="true">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.2 13.4 12l-9.8 9.8c-.4-.2-.6-.7-.6-1.2V3.4c0-.5.2-1 .6-1.2zm11 8.6 2.5-2.5L5.2 1.5l9.4 9.3zm3.8-1.8 2.9 1.6c.9.5.9 1.8 0 2.3l-2.9 1.6-2.7-2.6 2.7-2.9zM5.2 22.5l11.9-6.8-2.5-2.5-9.4 9.3z"/></svg>
-          Google Play · em breve</span>
+        <a class="badge" href="https://apps.apple.com/app/circuito/id6824781422"><img src="/img/baixar-na-app-store.svg" width="144" height="48" alt="Baixar na App Store"></a>
+        <span class="soon">Android · em breve</span>
       </div>
     </div>
 
@@ -167,10 +163,10 @@
 
   <section class="end">
     <h2>Baixe o Circuito</h2>
-    <p class="intro" style="margin: 0 auto;">Disponível no iPhone. No Android, chega em breve na Google Play.</p>
+    <p class="intro" style="margin: 0 auto;">Disponível no iPhone. No Android, chega em breve.</p>
     <div class="stores">
-      <a class="btn accent" href="https://apps.apple.com/app/circuito/id6824781422">Baixar na App Store</a>
-      <span class="btn soon" aria-disabled="true">Google Play · em breve</span>
+      <a class="badge" href="https://apps.apple.com/app/circuito/id6824781422"><img src="/img/baixar-na-app-store.svg" width="144" height="48" alt="Baixar na App Store"></a>
+      <span class="soon">Android · em breve</span>
     </div>
   </section>
 
