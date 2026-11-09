@@ -32,6 +32,9 @@
     <p class="dim" id="paste" hidden>Se o botão não abrir, cole este código na tela de espera do <strong>app do Circuito</strong>:</p>
     <p class="code" id="code"></p></div>
 
+  <div class="step" id="web"><span class="n">ou</span> · Prefere o computador? Use o Circuito na web, com o mesmo convite. Entre com Apple, Google ou e-mail e o convite já vale.
+    <a class="btn ghost" id="webopen" href="https://circuitoapp.com/">Usar na web</a></div>
+
   <footer><a href="/privacidade/">Política de privacidade</a></footer>
 </main>
 <script>
@@ -46,6 +49,7 @@
     document.getElementById('open').href = 'circuito://acesso?c=' + encodeURIComponent(code);
     document.getElementById('code').textContent = code;
     document.getElementById('paste').hidden = false;
+    document.getElementById('webopen').href = 'https://circuitoapp.com/?c=' + encodeURIComponent(code);
   }
 </script>
 </body>
