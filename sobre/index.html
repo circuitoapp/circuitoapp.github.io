@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Como funciona · Circuito</title>
+<meta name="description" content="O Circuito por dentro: a agenda, a redação que apura os eventos, os agentes e quem decide o que vai ao ar.">
+<meta property="og:title" content="Como funciona o Circuito">
+<meta property="og:description" content="A agenda, a redação, os agentes e quem decide o que vai ao ar.">
+<meta property="og:image" content="https://circuitoapp.github.io/img/icon.png">
+<link rel="icon" href="/img/icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  main.sobre { max-width: 920px; padding-top: 28px; }
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .logo { display: flex; align-items: center; gap: 12px; font-family: Silkscreen, monospace; text-transform: uppercase; font-size: 18px; color: var(--text); text-decoration: none; }
+  .logo img { width: 36px; height: 36px; display: block; }
+  .small { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; }
+
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+  .lead { margin-top: 56px; }
+  .lead h1 { font-size: clamp(28px, 4.6vw, 46px); line-height: 1.04; margin: 14px 0 18px; max-width: 18em; }
+  .lead h1 em { font-style: normal; color: var(--accent); }
+  .lede { font-size: 18px; font-weight: 300; max-width: 32em; margin: 0; }
+
+  section { margin-top: 96px; }
+  section > h2 { font-size: clamp(22px, 3.2vw, 30px); margin: 10px 0 14px; line-height: 1.15; }
+  section > p.intro { max-width: 36em; color: var(--dim); margin: 0; }
+
+  .tiles { list-style: none; padding: 0; margin: 32px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); }
+  .tiles li { padding: 24px 22px 26px; background: var(--surface); }
+  .tiles li + li { border-left: 1px solid var(--border); }
+  .tiles svg { width: 18px; height: 18px; fill: var(--accent); display: block; }
+  .tiles b { display: block; font-family: Silkscreen, monospace; font-weight: 400; text-transform: uppercase; font-size: 16px; margin: 14px 0 8px; line-height: 1.2; }
+  .tiles span { color: var(--dim); font-size: 15px; }
+
+  .steps { list-style: none; padding: 0; margin: 32px 0 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; counter-reset: s; }
+  .steps li { border: 1px solid var(--border); padding: 18px 16px 20px; counter-increment: s; }
+  .steps li::before { content: "0" counter(s); font-family: Silkscreen, monospace; color: var(--accent); font-size: 14px; }
+  .steps b { display: block; font-size: 16px; margin: 8px 0 4px; }
+  .steps span { display: block; color: var(--dim); font-size: 14px; line-height: 1.5; }
+
+  .gente { border-top: 2px solid var(--accent); margin-top: 40px; padding-top: 24px; }
+  .gente .px { font-size: clamp(22px, 3.6vw, 32px); line-height: 1.1; max-width: 18em; }
+  .gente .px em { font-style: normal; color: var(--accent); }
+  .gente ul { margin: 18px 0 0; padding-left: 1.1em; max-width: 38em; }
+  .gente li { color: var(--dim); margin-top: 6px; }
+
+  .agents { list-style: none; padding: 0; margin: 32px 0 0; border-top: 1px solid var(--border); }
+  .agents li { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .agents b { font-family: Silkscreen, monospace; font-weight: 400; text-transform: uppercase; font-size: 15px; line-height: 1.3; }
+  .agents span { color: var(--dim); font-size: 15px; }
+  .agents code { font-family: ui-monospace, Menlo, monospace; font-size: 13px; color: var(--text); }
+
+  .stack { margin-top: 32px; }
+  .layer { display: grid; grid-template-columns: 110px 1fr; gap: 20px; align-items: start; }
+  .layer > .eyebrow { padding-top: 14px; }
+  .nodes { display: flex; flex-wrap: wrap; gap: 8px; }
+  .node { border: 1px solid var(--border); background: var(--surface); padding: 10px 14px 12px; }
+  .node b { display: block; font-size: 15px; }
+  .node span { display: block; color: var(--dim); font-size: 13px; line-height: 1.4; }
+  .node.core { border: 2px solid var(--accent); background: transparent; }
+  .gap { height: 20px; }
+  .down { margin: 6px 0 6px 130px; color: var(--accent); font-family: Silkscreen, monospace; line-height: 1; }
+
+  .end { text-align: center; }
+  .end .intro { margin: 0 auto; }
+  .end .row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 24px; margin-top: 24px; }
+  .end .row .badge { display: block; line-height: 0; }
+  .end .row .badge img { height: 48px; width: auto; display: block; }
+  .end .row .web { display: inline-flex; align-items: center; height: 48px; padding: 0 18px; border: 1px solid var(--text); color: var(--text); text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .end .row .web:hover { background: var(--text); color: var(--bg); }
+  footer.sobre { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid var(--border); padding-top: 20px; }
+  footer.sobre span { display: flex; flex-wrap: wrap; gap: 16px; }
+
+  @media (max-width: 760px) {
+    .lead { margin-top: 36px; }
+    section { margin-top: 72px; }
+    .tiles, .steps { grid-template-columns: 1fr; }
+    .tiles li + li { border-left: 0; border-top: 1px solid var(--border); }
+    .agents li { grid-template-columns: 1fr; gap: 4px; }
+    .layer { grid-template-columns: 1fr; gap: 8px; }
+    .layer > .eyebrow { padding-top: 0; }
+    .down { margin-left: 0; }
+  }
+</style>
+</head>
+<body><main class="sobre">
+
+  <header class="top">
+    <a class="logo" href="/"><img src="/img/icon.png" alt="">Circuito</a>
+    <a class="small" href="/">Início</a>
+  </header>
+
+  <div class="lead">
+    <span class="eyebrow">Como funciona</span>
+    <h1>Uma agenda feita por pessoas. <em>Uma redação que apura pra elas.</em></h1>
+    <p class="lede">Agentes leem a programação da cidade e trazem os rolês. Quem decide o que vai ao ar é gente.</p>
+  </div>
+
+  <section>
+    <span class="eyebrow">O app</span>
+    <h2>O que é</h2>
+    <ul class="tiles">
+      <li><svg viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="5"/></svg><b>Agenda por cidade</b><span>Shows, peças, exposições e festas. Hoje, no fim de semana, grátis, na rua.</span></li>
+      <li><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0 10 10H0z"/></svg><b>Quem você segue</b><span>Amigos, casas e coletivos. Você vê pra onde vão e o que indicam.</span></li>
+      <li><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 0 10 5 5 10 0 5z"/></svg><b>Listas e roteiros</b><span>Junte os rolês e mande o link. Abre até sem o app.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <span class="eyebrow">A redação</span>
+    <h2>Como um evento entra</h2>
+    <p class="intro">Além do que as pessoas publicam, uma redação acompanha as casas da cidade.</p>
+    <ol class="steps">
+      <li><b>Fontes</b><span>Sesc, teatros, casas, coletivos. A curadoria escolhe quais.</span></li>
+      <li><b>Apuração</b><span>Um repórter, que é um agente, lê a agenda de cada fonte.</span></li>
+      <li><b>Pauta</b><span>Cada evento chega com data, lugar, preço e o flyer da fonte.</span></li>
+      <li><b>Curadoria</b><span>Uma pessoa aprova, corrige ou recusa.</span></li>
+      <li><b>No ar</b><span>O flyer vira capa, impressa no estilo riso do app.</span></li>
+    </ol>
+
+    <div class="gente">
+      <div class="px">O agente sugere. <em>Uma pessoa decide.</em></div>
+      <ul>
+        <li>Fonte nova começa em teste: tudo dela passa pela curadoria.</li>
+        <li>Só uma pessoa promove uma fonte a confiável, depois de um histórico de acertos.</li>
+        <li>Mesmo aí, o servidor confere o evento na página da fonte e limita quanto entra por dia.</li>
+        <li>Uma correção basta pra fonte voltar pro teste.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Agentes</span>
+    <h2>Onde entra o Claude</h2>
+    <ul class="agents">
+      <li><b>Repórter</b><span>Uma rotina agendada do Claude, na nuvem, duas vezes por semana. Tem uma chave só, que deixa ele sugerir eventos e nada mais.</span></li>
+      <li><b>Dado, não ordem</b><span>O que vem das páginas é conteúdo. Texto que tenta mandar no agente é ignorado e anotado.</span></li>
+      <li><b>Mesa da curadoria</b><span>Skills do Claude Code: <code>curadoria</code> pra pauta e fontes, <code>criar-evento</code> a partir de um texto, link ou flyer, <code>bancada</code> pra triar o que os testers mandam.</span></li>
+      <li><b>Boletim</b><span>Um e-mail curto pra curadoria depois de cada apuração: o que foi ao ar e o que espera na pauta.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <span class="eyebrow">Componentes</span>
+    <h2>As peças</h2>
+    <div class="stack">
+      <div class="layer">
+        <span class="eyebrow">Entra</span>
+        <div class="nodes">
+          <div class="node"><b>Fontes</b><span>sites das casas</span></div>
+          <div class="node"><b>Repórter</b><span>rotina do Claude</span></div>
+          <div class="node"><b>Curadoria</b><span>pessoa + Claude Code</span></div>
+          <div class="node"><b>Quem publica</b><span>pelo app</span></div>
+        </div>
+      </div>
+      <div class="down" aria-hidden="true">↓</div>
+      <div class="layer">
+        <span class="eyebrow">Guarda</span>
+        <div class="nodes">
+          <div class="node core"><b>Supabase</b><span>banco, contas, arquivos e funções · a pauta mora aqui</span></div>
+        </div>
+      </div>
+      <div class="down" aria-hidden="true">↓</div>
+      <div class="layer">
+        <span class="eyebrow">Sai</span>
+        <div class="nodes">
+          <div class="node"><b>iPhone</b><span>SwiftUI</span></div>
+          <div class="node"><b>Android</b><span>Kotlin · em breve</span></div>
+          <div class="node"><b>circuitoapp.com</b><span>SvelteKit</span></div>
+        </div>
+      </div>
+      <div class="gap" aria-hidden="true"></div>
+      <div class="layer">
+        <span class="eyebrow">Ao lado</span>
+        <div class="nodes">
+          <div class="node"><b>Firebase</b><span>avisos e falhas</span></div>
+          <div class="node"><b>Resend</b><span>e-mail</span></div>
+          <div class="node"><b>MapTiler</b><span>mapa</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="end">
+    <h2>Veja funcionando</h2>
+    <p class="intro">No iPhone e na web. No Android, chega em breve.</p>
+    <div class="row">
+      <a class="badge" href="https://apps.apple.com/app/circuito/id6824781422"><img src="/img/baixar-na-app-store.svg" width="144" height="48" alt="Baixar na App Store"></a>
+      <a class="web" href="https://circuitoapp.com/">Usar na web</a>
+    </div>
+  </section>
+
+  <footer class="sobre">
+    <span>© Circuito</span>
+    <span><a href="/">Início</a><a href="/privacidade/">Política de privacidade</a></span>
+  </footer>
+</main></body>
+</html>
