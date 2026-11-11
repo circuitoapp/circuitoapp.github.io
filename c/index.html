@@ -12,9 +12,9 @@
   <h1>Você foi convidado pro Circuito</h1>
   <p class="dim">A agenda cultural da cidade, feita pelos amigos. Ainda está em teste, só com convite.</p>
 
-  <div class="step" id="ios"><span class="n">1</span> · Instale o app pela App Store.
-    <a class="btn accent" href="https://apps.apple.com/app/circuito/id6824781422">Instalar pela App Store</a>
-    <p class="dim">Depois <strong>volte aqui</strong> pro passo 2.</p></div>
+  <div class="step" id="ios"><span class="n">1</span> · Baixe o Circuito pelo site: você cria a conta com este convite, escolhe seu @ e instala o app pela App Store.
+    <a class="btn accent" id="baixar-ios" href="https://circuitoapp.com/baixar">Baixar o Circuito pro iPhone</a>
+    <p class="dim">Depois de instalar, <strong>volte aqui</strong> pro passo 2.</p></div>
 
   <div class="step" id="android" hidden><span class="n">1</span> · O Circuito no Android está em teste na Google Play. Peça o seu acesso no site: você cria a conta com este convite, escolhe seu @ e pede o app pro Android.
     <a class="btn accent" id="baixar" href="https://circuitoapp.com/baixar">Pedir o Circuito pro Android</a>
@@ -31,7 +31,7 @@
   <footer><a href="/privacidade/">Política de privacidade</a></footer>
 </main>
 <script>
-  // Android: swap step 1 (Play internal test; access is requested at circuitoapp.com/baixar).
+  // Android: swap step 1 (Play internal test). Both platforms get the app at circuitoapp.com/baixar.
   if (/Android/i.test(navigator.userAgent)) {
     document.getElementById('ios').hidden = true;
     document.getElementById('android').hidden = false;
@@ -44,6 +44,7 @@
     document.getElementById('paste').hidden = false;
     document.getElementById('webopen').href = 'https://circuitoapp.com/?c=' + encodeURIComponent(code);
     document.getElementById('baixar').href = 'https://circuitoapp.com/baixar?c=' + encodeURIComponent(code);
+    document.getElementById('baixar-ios').href = 'https://circuitoapp.com/baixar?c=' + encodeURIComponent(code);
   }
 </script>
 </body>
